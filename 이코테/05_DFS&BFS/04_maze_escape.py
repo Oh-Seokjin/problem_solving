@@ -34,15 +34,14 @@ def bfs():
                 q.append([new_x, new_y])
                 visited[new_x][new_y] = 1
                 graph[new_x][new_y] = graph[x][y] + 1
-                print(q)
-                for row in graph:
-                    print(row)
-                print()
+                # print(q)
+                # for row in graph:
+                #     print(row)
+                # print()
 
 
 q = [[0, 0]]
 visited[0][0] = 1
 graph[0][0] = 1
 bfs()
-for row in graph:
-    print(row)
+print(graph[n-1][m-1])
