@@ -11,21 +11,10 @@ def move(x, y, d):
     cnt = 0
     sx, sy = x, y
     while True:
-        print(x, y, d)
         nx, ny = x+dxs[d], y+dys[d]
-
-        if in_range(x, y):
-            if sum(visited[x][y]) >= 18:
-                cnt = -1
-                break
-        else:
-            if sum(visited[nx][ny]) >= 18:
-                cnt = -1
-                break
 
         if not in_range(nx, ny):
             d = five[d]
-            visited[x][y][d] += 1
             x, y = nx, ny
             cnt += 1
             continue
@@ -55,7 +44,6 @@ def move(x, y, d):
 
         if (nx, ny) == (sx, sy):
             break
-        visited[nx][ny][d] += 1
         x, y = nx, ny
 
     return cnt
@@ -84,14 +72,12 @@ for test_case in range(1, T+1):
         for i in range(0, len(worm_hole_temp), 2):
             worm_hole_info[worm_hole_temp[i]] = worm_hole_temp[i+1]
             worm_hole_info[worm_hole_temp[i+1]] = worm_hole_temp[i]
-    print(worm_hole_info)
     answer = 0
 
     for x in range(n):
         for y in range(n):
             if board[x][y] == 0:
                 for d in range(4):
-                    visited = [[[0, 0, 0, 0] for _ in range(n)] for _ in range(n)]
                     answer = max(answer, move(x, y, d))
 
     print(f"#{test_case} {answer}")
